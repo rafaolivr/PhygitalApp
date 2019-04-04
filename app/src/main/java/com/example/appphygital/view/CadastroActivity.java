@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.appphygital.helper.ConfiguracaoFirebase;
 import com.example.appphygital.R;
 import com.example.appphygital.helper.ConfiguracaoFirebase;
 import com.example.appphygital.model.VisitanteVO;
@@ -40,6 +41,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class CadastroActivity extends AppCompatActivity {
 
@@ -315,7 +317,7 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     private File criarImagemArquivo() throws IOException {
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         String imageNameFile = "JPG_" + timeStamp + "_";
         nomeFoto = imageNameFile + ".jpg";
 
@@ -334,12 +336,12 @@ public class CadastroActivity extends AppCompatActivity {
 
     private void inicializar() {
 
-        etCadastroNome = findViewById(R.id.etCadastroNome);
-        etCadastroEmpresa = findViewById(R.id.etCadastroEmpresa);
-        etCadastroEmail = findViewById(R.id.etCadastroEmail);
-        btnCadastrar = findViewById(R.id.btnCadastrar);
-        btnTirarFoto = findViewById(R.id.btnTirarFoto);
-        pbCadastrar = findViewById(R.id.pbSalvarAlteracoes);
+        etCadastroNome = findViewById(R.id.et_cadastro_nome);
+        etCadastroEmpresa = findViewById(R.id.et_cadastro_empresa);
+        etCadastroEmail = findViewById(R.id.et_cadastro_email);
+        btnCadastrar = findViewById(R.id.bt_cadastro_cadastrar);
+        btnTirarFoto = findViewById(R.id.bt_cadastro_tirar_foto);
+        pbCadastrar = findViewById(R.id.pb_cadastro_salvar_alteracoes);
 
         etCadastroNome.requestFocus();
 
