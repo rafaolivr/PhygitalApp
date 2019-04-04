@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -27,17 +28,18 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="8dp"
-        android:autofillHints="@null"
         android:background="@drawable/background_caixa_texto"
         android:ems="10"
         android:hint="@string/cadastro_edit_text_hint_nome"
+        android:importantForAutofill="no"
         android:inputType="textCapWords"
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/et_cadastro_empresa"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_cadastro_logotipo_everis" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_cadastro_logotipo_everis"
+        tools:targetApi="o" />
 
     <EditText
         android:id="@+id/et_cadastro_empresa"
@@ -46,17 +48,18 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="8dp"
-        android:autofillHints="@null"
         android:background="@drawable/background_caixa_texto"
         android:ems="10"
         android:hint="@string/cadastro_edit_text_hint_empresa"
+        android:importantForAutofill="no"
         android:inputType="textCapWords"
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/et_cadastro_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_cadastro_nome" />
+        app:layout_constraintTop_toBottomOf="@+id/et_cadastro_nome"
+        tools:targetApi="o" />
 
     <EditText
         android:id="@+id/et_cadastro_email"
@@ -65,17 +68,18 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="8dp"
-        android:autofillHints="@null"
         android:background="@drawable/background_caixa_texto"
         android:ems="10"
         android:hint="@string/cadastro_edit_text_hint_email"
+        android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/pb_cadastro_salvar_alteracoes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_cadastro_empresa" />
+        app:layout_constraintTop_toBottomOf="@+id/et_cadastro_empresa"
+        tools:targetApi="o" />
 
     <Button
         android:id="@+id/bt_cadastro_tirar_foto"
