@@ -1,43 +1,32 @@
 package com.example.appphygital.view;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.appphygital.R;
-import com.example.appphygital.model.Visitante;
+import com.example.appphygital.model.VisitanteVO;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-
-import java.util.Base64;
 
 public class LeitorQRCode extends AppCompatActivity {
 
     private Button btn_scan;
     private FirebaseAuth autenticacao;
     private FirebaseAuth mAuth;
-    private Visitante visitante;
+    private VisitanteVO visitante;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,14 +64,14 @@ public class LeitorQRCode extends AppCompatActivity {
             if (result.getContents() != null){
                 String teste = result.getContents();
 
-                visitante = new Visitante();
+                visitante = new VisitanteVO();
 
                 String[] textoSepado = teste.split("\n");
 
                 visitante.setNome(textoSepado[0]);
                 visitante.setEmail(textoSepado[1]);
                 visitante.setEmpresa(textoSepado[2]);
-                visitante.setPhygits("0");
+                visitante.setPhygits(0);
 
                 cadastrarAnonimo(visitante);
 
@@ -100,7 +89,7 @@ public class LeitorQRCode extends AppCompatActivity {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 
-    private void cadastrarAnonimo(final Visitante visitante) {
+    private void cadastrarAnonimo(final VisitanteVO visitante) {
 
         mAuth.signInAnonymously().
                 addOnCompleteListener(

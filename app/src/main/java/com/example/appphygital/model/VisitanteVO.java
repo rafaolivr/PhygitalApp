@@ -1,5 +1,8 @@
 package com.example.appphygital.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.example.appphygital.helper.ConfiguracaoFirebase;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
@@ -7,18 +10,39 @@ import com.google.firebase.database.Exclude;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Visitante {
+public class VisitanteVO implements Parcelable {
 
     private String id;
     private String nome;
     private String empresa;
     private String email;
     private String senha;
-    private String phygits;
+    public static final Creator<VisitanteVO> CREATOR = new Creator<VisitanteVO>() {
+        @Override
+        public VisitanteVO createFromParcel(Parcel in) {
+            return new VisitanteVO(in);
+        }
+
+        @Override
+        public VisitanteVO[] newArray(int size) {
+            return new VisitanteVO[size];
+        }
+    };
     private String photopath;
+    private int phygits;
 
-    public Visitante() {
+    public VisitanteVO() {
 
+    }
+
+    protected VisitanteVO(Parcel in) {
+        id = in.readString();
+        nome = in.readString();
+        empresa = in.readString();
+        email = in.readString();
+        senha = in.readString();
+        phygits = in.readInt();
+        photopath = in.readString();
     }
 
     public void salvar(){
@@ -84,11 +108,11 @@ public class Visitante {
         this.senha = senha;
     }
 
-    public String getPhygits() {
+    public int getPhygits() {
         return phygits;
     }
 
-    public void setPhygits(String phygits) {
+    public void setPhygits(int phygits) {
         this.phygits = phygits;
     }
 
@@ -98,5 +122,21 @@ public class Visitante {
 
     public void setPhotopath(String photopath) {
         this.photopath = photopath;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(nome);
+        dest.writeString(empresa);
+        dest.writeString(email);
+        dest.writeString(senha);
+        dest.writeInt(phygits);
+        dest.writeString(photopath);
     }
 }

@@ -1,15 +1,14 @@
 package com.example.appphygital.view;
 
-import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.appphygital.R;
-import com.example.appphygital.model.Visitante;
 import com.example.appphygital.helper.VisitanteFirebase;
+import com.example.appphygital.model.VisitanteVO;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,7 +23,7 @@ public class InteragirActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
     private static FirebaseAuth firebaseAuth;
-    private Visitante visitanteLogado;
+    private VisitanteVO visitanteLogado;
     private DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
     //variaveis
@@ -76,7 +75,7 @@ public class InteragirActivity extends AppCompatActivity {
 
                 VisitanteFirebase.atualizarPhygitsUsuario(String.valueOf(phygitsAtualizado));
 
-                visitanteLogado.setPhygits(String.valueOf(phygitsAtualizado));
+                visitanteLogado.setPhygits(phygitsAtualizado);
                 visitanteLogado.atualizar();
                 finish();
 

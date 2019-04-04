@@ -3,7 +3,7 @@ package com.example.appphygital.helper;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.example.appphygital.model.Visitante;
+import com.example.appphygital.model.VisitanteVO;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -74,13 +74,13 @@ public class VisitanteFirebase {
         }
     }
 
-    public static Visitante getDadosVisitanteLogado(){
+    public static VisitanteVO getDadosVisitanteLogado() {
 
         FirebaseUser firebaseUser = getVisitanteAtual();
 
-        Visitante visitante = new Visitante();
-        //visitante.setNome(firebaseUser.getDisplayName());
-        visitante.setPhygits(firebaseUser.getDisplayName());
+        VisitanteVO visitante = new VisitanteVO();
+        visitante.setNome(firebaseUser.getDisplayName());
+        //visitante.setPhygits(firebaseUser.getDisplayName());
         visitante.setId(firebaseUser.getUid());
 
         return visitante;

@@ -19,9 +19,10 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.appphygital.helper.ConfiguracaoFirebase;
 import com.example.appphygital.R;
 import com.example.appphygital.helper.ConfiguracaoFirebase;
-import com.example.appphygital.model.Visitante;
+import com.example.appphygital.model.VisitanteVO;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -48,7 +49,7 @@ public class CadastroActivity extends AppCompatActivity {
     private Button btnCadastrar;
     private ProgressBar pbCadastrar;
 
-    private Visitante visitante;
+    private VisitanteVO visitante;
 
     private FirebaseAuth autenticacao;
     private FirebaseAuth mAuth;
@@ -92,7 +93,7 @@ public class CadastroActivity extends AppCompatActivity {
                 String empresa = etCadastroEmpresa.getText().toString();
                 String email = etCadastroEmail.getText().toString();
                 String senha = "123456";
-                String phygits = "0";
+                int phygits = 0;
                 String photopath = nomeFoto;
 
                 if (!nome.isEmpty()) {
@@ -100,7 +101,7 @@ public class CadastroActivity extends AppCompatActivity {
                         if (!email.isEmpty()) {
                             if (!photopath.isEmpty()) {
 
-                                visitante = new Visitante();
+                                visitante = new VisitanteVO();
 
                                 visitante.setNome(nome);
                                 visitante.setEmpresa(empresa);
@@ -138,7 +139,7 @@ public class CadastroActivity extends AppCompatActivity {
 
     }
 
-    private void cadastrar(final Visitante visitante) {
+    private void cadastrar(final VisitanteVO visitante) {
 
         pbCadastrar.setVisibility(View.VISIBLE);
         autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
@@ -194,7 +195,7 @@ public class CadastroActivity extends AppCompatActivity {
         );
     }
 
-    private void cadastrarAnonimo(final Visitante visitante) {
+    private void cadastrarAnonimo(final VisitanteVO visitante) {
         pbCadastrar.setVisibility(View.VISIBLE);
         mAuth.signInAnonymously().
                 addOnCompleteListener(
