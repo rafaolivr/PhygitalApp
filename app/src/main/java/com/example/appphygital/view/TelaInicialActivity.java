@@ -1,39 +1,39 @@
 package com.example.appphygital.view;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.appphygital.helper.ConfiguracaoFirebase;
 import com.example.appphygital.R;
-import com.example.appphygital.model.Visitante;
+import com.example.appphygital.helper.ConfiguracaoFirebase;
+import com.example.appphygital.model.VisitanteVO;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class TelaInicialActivity extends AppCompatActivity {
 
     private Button btnNovoVisitante;
-    private Button btnAlanPedro, btnBenMeyer;
+    public static final String USUARIO = "usuario";
 
     private FirebaseAuth autenticacao;
     private FirebaseAuth mAuth;
-    private Visitante visitante;
+    private Button btnAlanPedro;
+    private VisitanteVO visitante;
+    private CircleImageView civFotoPerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +48,7 @@ public class TelaInicialActivity extends AppCompatActivity {
         } else {
             verificarVisitanteLogado();
         }
+        obterExtras();
 
         //Inicializar componentes
         inicializar();
@@ -55,48 +56,23 @@ public class TelaInicialActivity extends AppCompatActivity {
         //Clique do botão
         botaoNovoVisitante();
         botaoAlanPedro();
-        botaoBenMeyer();
     }
 
-    private void botaoBenMeyer() {
-        btnBenMeyer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String nome = "Ben Meyer";
-                String phygits = "50";
-
-                visitante = new Visitante();
-
-                visitante.setNome(nome);
-                visitante.setPhygits(phygits);
-
-                cadastrarAnonimo(visitante);
-
-            }
-        });
+    private void obterExtras() {
+        this.visitante = getIntent().getParcelableExtra(USUARIO);
     }
 
     private void botaoAlanPedro() {
         btnAlanPedro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String nome = "Alan Pedro";
-                String phygits = "50";
-
-                visitante = new Visitante();
-
-                visitante.setNome(nome);
-                visitante.setPhygits(phygits);
-
-                cadastrarAnonimo(visitante);
-
-
+                if (visitante != null)
+                    cadastrarAnonimo(visitante);
             }
         });
     }
 
-    private void cadastrarAnonimo(final Visitante visitante) {
+    private void cadastrarAnonimo(final VisitanteVO visitante) {
 
         mAuth.signInAnonymously().
                 addOnCompleteListener(
@@ -163,24 +139,24 @@ public class TelaInicialActivity extends AppCompatActivity {
 
         if (result != null) {
 
-            if (result.getContents() != null){
+            if (result.getContents() != null) {
 
-                try{
+                try {
 
                     String teste = result.getContents();
 
-                    visitante = new Visitante();
+                    visitante = new VisitanteVO();
 
                     String[] textoSepado = teste.split("\n");
 
                     visitante.setNome(textoSepado[0]);
                     visitante.setEmail(textoSepado[1]);
                     visitante.setEmpresa(textoSepado[2]);
-                    visitante.setPhygits("0");
+                    visitante.setPhygits(0);
 
                     cadastrarAnonimo(visitante);
 
-                } catch (Exception e){
+                } catch (Exception e) {
                     Toast.makeText(this, "QRCode Inválido", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(), CadastroActivity.class);
                     startActivity(intent);
@@ -208,7 +184,11 @@ public class TelaInicialActivity extends AppCompatActivity {
     private void inicializar() {
         btnNovoVisitante = findViewById(R.id.btnNovoVisitante);
         btnAlanPedro = findViewById(R.id.btnAlanPedro);
-        btnBenMeyer = findViewById(R.id.btnBenMeyer);
+        civFotoPerfil = findViewById(R.id.imageUsuario);
+        if (visitante != null) {
+            btnAlanPedro.setText(visitante.getNome());
+            civFotoPerfil.setVisibility(View.VISIBLE);
+        }
     }
 
 }
