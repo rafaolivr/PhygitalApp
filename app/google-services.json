@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "1066034999668",
+    "firebase_url": "https://phygitalapp-9e07e.firebaseio.com",
+    "project_id": "phygitalapp-9e07e",
+    "storage_bucket": "phygitalapp-9e07e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066034999668:android:38097620d376d244",
+        "android_client_info": {
+          "package_name": "com.example.appphygital"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1066034999668-hgehktirp3vmgpjcl3u92ui1aft2j9pt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.appphygital",
+            "certificate_hash": "ee44b281c01a6965c4cc8d592f9f4f0d150afb3e"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCva61W_fSlbkE4qt3W_hWU0R7XHWXVDHU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1066034999668-rt5utb2k0gvs0qg7t8dphovntjoh6r7c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
