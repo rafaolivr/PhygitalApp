@@ -28,7 +28,7 @@ public class TelaInicialActivity extends AppCompatActivity {
 
     public static final String CADASTRO_QR_CODE = "cadastro";
     private FirebaseAuth autenticacao;
-    private Button btnAlanPedro;
+    private Button btnLogin;
     private VisitanteVO visitante;
     private CircleImageView civFotoPerfil;
 
@@ -58,7 +58,7 @@ public class TelaInicialActivity extends AppCompatActivity {
     }
 
     private void botaoAlanPedro() {
-        btnAlanPedro.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (visitante != null)
@@ -155,10 +155,10 @@ public class TelaInicialActivity extends AppCompatActivity {
 
     private void inicializar() {
         btnNovoVisitante = findViewById(R.id.btnNovoVisitante);
-        btnAlanPedro = findViewById(R.id.btnAlanPedro);
+        btnLogin = findViewById(R.id.btnLogin);
         civFotoPerfil = findViewById(R.id.imageUsuario);
         if (visitante != null) {
-            btnAlanPedro.setText(visitante.getNome());
+            btnLogin.setText(visitante.getNome());
             civFotoPerfil.setVisibility(View.VISIBLE);
         }
     }

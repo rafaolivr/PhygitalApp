@@ -1,133 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/iv_cadastro_logotipo_everis"
-        android:layout_width="250dp"
-        android:layout_height="200dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:contentDescription="@null"
-        app:layout_constraintBottom_toTopOf="@+id/et_cadastro_nome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
-        app:srcCompat="@drawable/everislogo" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/et_cadastro_nome"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/background_caixa_texto"
-        android:ems="10"
-        android:hint="@string/cadastro_edit_text_hint_nome"
-        android:importantForAutofill="no"
-        android:inputType="textCapWords"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_cadastro_logotipo_everis"
-        tools:targetApi="o" />
+        <ImageView
+            android:id="@+id/iv_cadastro_logotipo_everis"
+            android:layout_width="250dp"
+            android:layout_height="200dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@null"
+            app:layout_constraintBottom_toTopOf="@+id/et_cadastro_nome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:srcCompat="@drawable/everislogo" />
 
-    <EditText
-        android:id="@+id/et_cadastro_empresa"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/background_caixa_texto"
-        android:ems="10"
-        android:hint="@string/cadastro_edit_text_hint_empresa"
-        android:importantForAutofill="no"
-        android:inputType="textCapWords"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/et_cadastro_nome"
-        app:layout_constraintStart_toStartOf="@+id/et_cadastro_nome"
-        app:layout_constraintTop_toBottomOf="@+id/et_cadastro_nome"
-        tools:targetApi="o" />
+        <EditText
+            android:id="@+id/et_cadastro_nome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/background_caixa_texto"
+            android:ems="10"
+            android:hint="@string/cadastro_edit_text_hint_nome"
+            android:importantForAutofill="no"
+            android:inputType="textCapWords"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_cadastro_logotipo_everis"
+            tools:targetApi="o" />
 
-    <EditText
-        android:id="@+id/et_cadastro_email"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/background_caixa_texto"
-        android:ems="10"
-        android:hint="@string/cadastro_edit_text_hint_email"
-        android:importantForAutofill="no"
-        android:inputType="textEmailAddress"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/et_cadastro_nome"
-        app:layout_constraintStart_toStartOf="@+id/et_cadastro_nome"
-        app:layout_constraintTop_toBottomOf="@+id/et_cadastro_empresa"
-        tools:targetApi="o" />
+        <EditText
+            android:id="@+id/et_cadastro_empresa"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/background_caixa_texto"
+            android:ems="10"
+            android:hint="@string/cadastro_edit_text_hint_empresa"
+            android:importantForAutofill="no"
+            android:inputType="textCapWords"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/et_cadastro_nome"
+            app:layout_constraintStart_toStartOf="@+id/et_cadastro_nome"
+            app:layout_constraintTop_toBottomOf="@+id/et_cadastro_nome"
+            tools:targetApi="o" />
 
-    <EditText
-        android:id="@+id/et_cadastro_senha"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/background_caixa_texto"
-        android:ems="10"
-        android:hint="@string/cadastro_edit_text_hint_senha"
-        android:importantForAutofill="no"
-        android:inputType="textVisiblePassword"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/et_cadastro_nome"
-        app:layout_constraintStart_toStartOf="@+id/et_cadastro_nome"
-        app:layout_constraintTop_toBottomOf="@+id/et_cadastro_email"
-        tools:targetApi="o" />
+        <EditText
+            android:id="@+id/et_cadastro_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/background_caixa_texto"
+            android:ems="10"
+            android:hint="@string/cadastro_edit_text_hint_email"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/et_cadastro_nome"
+            app:layout_constraintStart_toStartOf="@+id/et_cadastro_nome"
+            app:layout_constraintTop_toBottomOf="@+id/et_cadastro_empresa"
+            tools:targetApi="o" />
 
-    <Button
-        android:id="@+id/bt_cadastro_tirar_foto"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/selector_botao"
-        android:text="@string/cadastro_botao_tirar_foto_texto"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pb_cadastro_salvar_alteracoes" />
+        <EditText
+            android:id="@+id/et_cadastro_senha"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/background_caixa_texto"
+            android:ems="10"
+            android:hint="@string/cadastro_edit_text_hint_senha"
+            android:importantForAutofill="no"
+            android:inputType="textVisiblePassword"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/et_cadastro_nome"
+            app:layout_constraintStart_toStartOf="@+id/et_cadastro_nome"
+            app:layout_constraintTop_toBottomOf="@+id/et_cadastro_email"
+            tools:targetApi="o" />
 
-    <Button
-        android:id="@+id/bt_cadastro_cadastrar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/selector_botao"
-        android:text="@string/cadastro_botao_cadastrar_texto"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_cadastro_tirar_foto" />
+        <Button
+            android:id="@+id/bt_cadastro_tirar_foto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="64dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/selector_botao"
+            android:text="@string/cadastro_botao_tirar_foto_texto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pb_cadastro_salvar_alteracoes" />
 
-    <ProgressBar
-        android:id="@+id/pb_cadastro_salvar_alteracoes"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/bt_cadastro_tirar_foto"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_cadastro_senha"
-        tools:indeterminateTint="@color/everis" />
+        <Button
+            android:id="@+id/bt_cadastro_cadastrar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/selector_botao"
+            android:text="@string/cadastro_botao_cadastrar_texto"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_cadastro_tirar_foto" />
 
-</android.support.constraint.ConstraintLayout>
+        <ProgressBar
+            android:id="@+id/pb_cadastro_salvar_alteracoes"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/bt_cadastro_tirar_foto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_cadastro_senha"
+            tools:indeterminateTint="@color/everis" />
+
+    </android.support.constraint.ConstraintLayout>
 
 
+</ScrollView>
