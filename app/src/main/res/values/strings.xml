@@ -7,4 +7,12 @@
     <string name="cadastro_edit_text_hint_email">E-mail</string>
     <string name="cadastro_botao_tirar_foto_texto">Tirar Foto</string>
     <string name="cadastro_botao_cadastrar_texto">Cadastrar</string>
+
+    --- BOAS VINDAS ---
+    <string name="boas_vindas_texto_saudacao">Olá, <b>%1$s</b>.</string>
+    <string name="boas_vindas_texto_quantidade_phygits">Você possui %1$d phygits.</string>
+    <string name="boas_vindas_texto_aumente_quantidade">Aumente a quantidade ao </string>
+    <string name="boas_vindas_texto_aumente_interaja_botao">interagir</string>
+    <string name="boas_vindas_texto_aumente_uso_oferta">ou use as ofertas do nosso Phygital Space ;)</string>
+
 </resources>

@@ -27,7 +27,7 @@ public class BoasVindasActivity extends AppCompatActivity {
 
     private TextView tvNome;
     private TextView tvPhygits;
-    private Button btnInteragir;
+    private Button btInteragir;
 
     private DatabaseReference mDatabase;
     private static FirebaseAuth firebaseAuth;
@@ -77,7 +77,7 @@ public class BoasVindasActivity extends AppCompatActivity {
     }
 
     private void botaoInteragir() {
-        btnInteragir.setOnClickListener(new View.OnClickListener() {
+        btInteragir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -129,8 +129,8 @@ public class BoasVindasActivity extends AppCompatActivity {
 
     private void inicializar() {
 
-        btnInteragir = findViewById(R.id.bt_interagir);
-        tvNome = findViewById(R.id.tv_nome_usuario);
-        tvPhygits = findViewById(R.id.tv_valor_phygits);
+        btInteragir = findViewById(R.id.bt_boas_vinda_interagir);
+        tvNome = findViewById(R.id.tv_boas_vindas_saudacao_usuario);
+        tvPhygits = findViewById(R.id.tv_boas_vindas_quantidade_phygits);
     }
 }

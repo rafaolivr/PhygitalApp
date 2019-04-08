@@ -7,111 +7,72 @@
     android:padding="8dp">
 
     <ImageView
-        android:id="@+id/iv_logo_everis"
+        android:id="@+id/iv_boas_vindas_logo_everis"
         android:layout_width="250dp"
         android:layout_height="200dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
+        android:contentDescription="@null"
+        android:importantForAccessibility="no"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/everislogo" />
 
     <TextView
-        android:id="@+id/tv_saudacao"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_boas_vindas_saudacao_usuario"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:text="Olá"
+        android:text="@string/boas_vindas_texto_saudacao"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_logo_everis" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_boas_vindas_logo_everis"
+        tools:text="Olá, André Sales" />
 
     <TextView
-        android:id="@+id/tv_nome_usuario"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_boas_vindas_quantidade_phygits"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toEndOf="@+id/tv_saudacao"
-        app:layout_constraintTop_toTopOf="@+id/tv_saudacao"
-        tools:text="Nome" />
-
-    <TextView
-        android:id="@+id/tv_voce_tem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Você tem"
+        android:text="@string/boas_vindas_texto_quantidade_phygits"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_saudacao" />
+        app:layout_constraintStart_toStartOf="@+id/tv_boas_vindas_saudacao_usuario"
+        app:layout_constraintTop_toBottomOf="@+id/tv_boas_vindas_saudacao_usuario"
+        tools:text="Você possui 100 phigits!" />
 
     <TextView
-        android:id="@+id/tv_valor_phygits"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_boas_vindas_aumente_quantidade"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/tv_voce_tem"
-        app:layout_constraintTop_toTopOf="@id/tv_voce_tem"
-        tools:text="valor" />
-
-    <TextView
-        android:id="@+id/tv_phygits"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="phygits !"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toEndOf="@+id/tv_valor_phygits"
-        app:layout_constraintTop_toTopOf="@id/tv_voce_tem" />
-
-    <TextView
-        android:id="@+id/tv_aumente_quantidade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="Aumente a quantidade ao interagir !"
+        android:layout_marginTop="45dp"
+        android:text="@string/boas_vindas_texto_aumente_quantidade"
         android:textSize="18sp"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_phygits" />
+        app:layout_constraintStart_toStartOf="@+id/tv_boas_vindas_saudacao_usuario"
+        app:layout_constraintTop_toBottomOf="@id/tv_boas_vindas_quantidade_phygits" />
 
     <Button
-        android:id="@+id/bt_interagir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/bt_boas_vinda_interagir"
+        android:layout_width="80dp"
+        android:layout_height="20dp"
         android:background="@drawable/background_botao"
-        android:text="Interaja"
+        android:text="@string/boas_vindas_texto_aumente_interaja_botao"
         android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_boas_vindas_aumente_quantidade"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_aumente_quantidade" />
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toEndOf="@+id/tv_boas_vindas_aumente_quantidade"
+        app:layout_constraintTop_toTopOf="@+id/tv_boas_vindas_aumente_quantidade" />
+
 
     <TextView
-        android:id="@+id/tv_ofertas_phygital"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_boas_vindas_ofertas_phygital"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Ou use as ofertas do nosso Phygital Space ;)."
+        android:text="@string/boas_vindas_texto_aumente_uso_oferta"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_interagir"
-        app:layout_constraintVertical_bias="0" />
-
+        app:layout_constraintStart_toStartOf="@+id/tv_boas_vindas_aumente_quantidade"
+        app:layout_constraintTop_toBottomOf="@+id/tv_boas_vindas_aumente_quantidade" />
 </android.support.constraint.ConstraintLayout>
