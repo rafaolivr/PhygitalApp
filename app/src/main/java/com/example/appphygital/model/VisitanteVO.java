@@ -45,20 +45,20 @@ public class VisitanteVO implements Parcelable {
         photopath = in.readString();
     }
 
-    public void salvar(){
+    public void salvar() {
         DatabaseReference firebaseRef = ConfiguracaoFirebase.getFirebase();
         DatabaseReference visitanteRef = firebaseRef.child("visitantes").child(getId());
         visitanteRef.setValue(this);
     }
 
-    public void atualizar(){
+    public void atualizar() {
         DatabaseReference firebaseRef = ConfiguracaoFirebase.getFirebase();
-        DatabaseReference visitanteRef =  firebaseRef.child("visitantes").child(getId());
+        DatabaseReference visitanteRef = firebaseRef.child("visitantes").child(getId());
         Map<String, Object> valoresVistante = converterParaMap();
         visitanteRef.updateChildren(valoresVistante);
     }
 
-    public Map<String, Object> converterParaMap(){
+    public Map<String, Object> converterParaMap() {
         HashMap<String, Object> usuarioMap = new HashMap<>();
         //usuarioMap.put("nome", getNome());
         usuarioMap.put("phygits", getPhygits());

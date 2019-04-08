@@ -19,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.appphygital.helper.ConfiguracaoFirebase;
 import com.example.appphygital.R;
 import com.example.appphygital.helper.ConfiguracaoFirebase;
 import com.example.appphygital.model.VisitanteVO;
@@ -42,12 +41,14 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class CadastroActivity extends AppCompatActivity {
 
     private EditText etCadastroNome, etCadastroEmpresa, etCadastroEmail;
     private Button btnCadastrar;
     private ProgressBar pbCadastrar;
+    public static final String CADASTRO_QR_CODE = "cadastro";
 
     private VisitanteVO visitante;
 
@@ -74,12 +75,18 @@ public class CadastroActivity extends AppCompatActivity {
         reference = storage.getReference();
         mAuth = FirebaseAuth.getInstance();
 
+        obterExtras();
+
         //Inicialiar componentes
         inicializar();
 
         //Click do botão
         botaoCadastrar();
 
+    }
+
+    private void obterExtras() {
+        this.visitante = getIntent().getParcelableExtra(CADASTRO_QR_CODE);
     }
 
     private void botaoCadastrar() {
@@ -108,11 +115,11 @@ public class CadastroActivity extends AppCompatActivity {
                                 visitante.setEmail(email);
                                 visitante.setSenha(senha);
                                 visitante.setPhygits(phygits);
-                                visitante.setPhotopath(photopath);
                                 visitante.setPhotopath(nomeFoto);
 
-                                cadastrarAnonimo(visitante);
                                 salvarFirebase();
+
+                                cadastrar(visitante);
 
                             } else {
                                 Toast.makeText(CadastroActivity.this, "É necessário tirar foto para se cadastrar", Toast.LENGTH_SHORT).show();
@@ -140,7 +147,7 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     private void cadastrar(final VisitanteVO visitante) {
-
+        final boolean sucesso;
         pbCadastrar.setVisibility(View.VISIBLE);
         autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
         autenticacao.createUserWithEmailAndPassword(
@@ -153,22 +160,9 @@ public class CadastroActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            try {
+                            pbCadastrar.setVisibility(View.GONE);
+                            Toast.makeText(CadastroActivity.this, "Cadastrado com sucesso", Toast.LENGTH_SHORT).show();
 
-                                pbCadastrar.setVisibility(View.GONE);
-
-                                //Salvar dados no firebase
-                                String idVisitante = task.getResult().getUser().getUid();
-                                visitante.setId(idVisitante);
-                                visitante.salvar();
-
-                                Toast.makeText(CadastroActivity.this, "Cadastrado com sucesso", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(), BoasVindasActivity.class));
-                                finish();
-
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
 
                         } else {
 
@@ -193,58 +187,64 @@ public class CadastroActivity extends AppCompatActivity {
                     }
                 }
         );
+        if (autenticacao.getCurrentUser() != null) {
+            this.visitante.setId(Objects.requireNonNull(autenticacao.getCurrentUser()).getUid());
+            this.visitante.salvar();
+            startActivity(new Intent(getApplicationContext(), BoasVindasActivity.class));
+            finish();
+        }
     }
 
-    private void cadastrarAnonimo(final VisitanteVO visitante) {
-        pbCadastrar.setVisibility(View.VISIBLE);
-        mAuth.signInAnonymously().
-                addOnCompleteListener(
-                        this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-
-                                if (task.isSuccessful()) {
-
-                                    try {
-
-                                        pbCadastrar.setVisibility(View.GONE);
-
-                                        //Salvar dados no firebase
-                                        String idVisitante = task.getResult().getUser().getUid();
-                                        visitante.setId(idVisitante);
-                                        visitante.salvar();
-
-                                        Toast.makeText(CadastroActivity.this, "Cadastrado com sucesso", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(getApplicationContext(), BoasVindasActivity.class));
-                                        finish();
-
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-
-                                } else {
-
-                                    pbCadastrar.setVisibility(View.GONE);
-
-                                    String erroExecucao = "";
-                                    try {
-                                        throw task.getException();
-                                    } catch (FirebaseAuthWeakPasswordException e) {
-                                        erroExecucao = "Digite uma senha mais forte";
-                                    } catch (FirebaseAuthInvalidCredentialsException e) {
-                                        erroExecucao = "Por favor, digite um e-mail válido";
-                                    } catch (FirebaseAuthUserCollisionException e) {
-                                        erroExecucao = "Este conta já foi cadastra";
-                                    } catch (Exception e) {
-                                        erroExecucao = "Erro ao cadastrar usuário: " + e.getMessage();
-                                        e.printStackTrace();
-                                    }
-
-                                    Toast.makeText(CadastroActivity.this, "Erro: " + erroExecucao, Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-    }
+//    private void cadastrarAnonimo(final VisitanteVO visitante) {
+//        pbCadastrar.setVisibility(View.VISIBLE);
+//        mAuth.signInAnonymously().
+//                addOnCompleteListener(
+//                        this, new OnCompleteListener<AuthResult>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<AuthResult> task) {
+//
+//                                if (task.isSuccessful()) {
+//
+//                                    try {
+//
+//                                        pbCadastrar.setVisibility(View.GONE);
+//
+//                                        //Salvar dados no firebase
+//                                        String idVisitante = task.getResult().getUser().getUid();
+//                                        visitante.setId(idVisitante);
+//                                        visitante.salvar();
+//
+//                                        Toast.makeText(CadastroActivity.this, "Cadastrado com sucesso", Toast.LENGTH_SHORT).show();
+//                                        startActivity(new Intent(getApplicationContext(), BoasVindasActivity.class));
+//                                        finish();
+//
+//                                    } catch (Exception e) {
+//                                        e.printStackTrace();
+//                                    }
+//
+//                                } else {
+//
+//                                    pbCadastrar.setVisibility(View.GONE);
+//
+//                                    String erroExecucao = "";
+//                                    try {
+//                                        throw task.getException();
+//                                    } catch (FirebaseAuthWeakPasswordException e) {
+//                                        erroExecucao = "Digite uma senha mais forte";
+//                                    } catch (FirebaseAuthInvalidCredentialsException e) {
+//                                        erroExecucao = "Por favor, digite um e-mail válido";
+//                                    } catch (FirebaseAuthUserCollisionException e) {
+//                                        erroExecucao = "Este conta já foi cadastra";
+//                                    } catch (Exception e) {
+//                                        erroExecucao = "Erro ao cadastrar usuário: " + e.getMessage();
+//                                        e.printStackTrace();
+//                                    }
+//
+//                                    Toast.makeText(CadastroActivity.this, "Erro: " + erroExecucao, Toast.LENGTH_SHORT).show();
+//                                }
+//                            }
+//                        });
+//    }
 
 
     @Override
@@ -344,6 +344,11 @@ public class CadastroActivity extends AppCompatActivity {
         pbCadastrar = findViewById(R.id.pb_cadastro_salvar_alteracoes);
 
         etCadastroNome.requestFocus();
+        if (visitante != null) {
+            etCadastroNome.setText(visitante.getNome());
+            etCadastroEmail.setText(visitante.getEmail());
+            etCadastroEmpresa.setText(visitante.getEmpresa());
+        }
 
     }
 }
