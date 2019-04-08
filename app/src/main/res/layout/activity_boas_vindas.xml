@@ -6,73 +6,124 @@
     android:layout_height="match_parent"
     android:padding="8dp">
 
-    <ImageView
-        android:id="@+id/iv_boas_vindas_logo_everis"
-        android:layout_width="250dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="50dp"
-        android:contentDescription="@null"
-        android:importantForAccessibility="no"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/everislogo" />
-
     <TextView
-        android:id="@+id/tv_boas_vindas_saudacao_usuario"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/boas_vindas_texto_saudacao"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_boas_vindas_logo_everis"
-        tools:text="Olá, André Sales" />
-
-    <TextView
-        android:id="@+id/tv_boas_vindas_quantidade_phygits"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/boas_vindas_texto_quantidade_phygits"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/tv_boas_vindas_saudacao_usuario"
-        app:layout_constraintTop_toBottomOf="@+id/tv_boas_vindas_saudacao_usuario"
-        tools:text="Você possui 100 phigits!" />
-
-    <TextView
-        android:id="@+id/tv_boas_vindas_aumente_quantidade"
+        android:id="@+id/tv_boas_vindas_bem_vindo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
-        android:text="@string/boas_vindas_texto_aumente_quantidade"
-        android:textSize="18sp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/tv_boas_vindas_saudacao_usuario"
-        app:layout_constraintTop_toBottomOf="@id/tv_boas_vindas_quantidade_phygits" />
-
-    <Button
-        android:id="@+id/bt_boas_vinda_interagir"
-        android:layout_width="80dp"
-        android:layout_height="20dp"
-        android:background="@drawable/background_botao"
-        android:text="@string/boas_vindas_texto_aumente_interaja_botao"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_boas_vindas_aumente_quantidade"
+        android:gravity="center"
+        android:text="@string/boas_vindas_texto_bem_vindo"
+        android:textColor="@color/everis"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toEndOf="@+id/tv_boas_vindas_aumente_quantidade"
-        app:layout_constraintTop_toTopOf="@+id/tv_boas_vindas_aumente_quantidade" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_boas_vindas_avatar_usuario"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_boas_vindas_bem_vindo" />
 
     <TextView
-        android:id="@+id/tv_boas_vindas_ofertas_phygital"
+        android:id="@+id/tv_boas_vindas_nome_usuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/boas_vindas_texto_aumente_uso_oferta"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/boas_vindas_texto_nome_usuario"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/civ_boas_vindas_avatar_usuario"
+        tools:text="André Sales" />
+
+    <View
+        android:id="@+id/v_boas_vindas_separador_informacao"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="64dp"
+        android:background="@color/preto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_boas_vindas_nome_usuario" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_boas_vindas_phygits"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@id/v_boas_vindas_separador_informacao"
+        app:layout_constraintStart_toStartOf="@id/v_boas_vindas_separador_informacao"
+        app:layout_constraintTop_toBottomOf="@+id/v_boas_vindas_separador_informacao">
+
+        <TextView
+            android:id="@+id/tv_boas_vindas_phygits_disponiveis"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/boas_vindas_texto_phygits_disponiveis"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_boas_vindas_valor_phygits"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:maxLength="6"
+            android:text="@string/boas_vindas_texto_quantidade_phygits"
+            android:textColor="@color/phygit_azul"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_boas_vindas_phygits_disponiveis"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_boas_vindas_phygits_disponiveis"
+            app:layout_constraintTop_toTopOf="@id/tv_boas_vindas_phygits_disponiveis"
+            tools:text="2500" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_boas_vindas_dica"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:gravity="center"
+        android:text="@string/boas_vindas_texto_dica"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/tv_boas_vindas_aumente_quantidade"
-        app:layout_constraintTop_toBottomOf="@+id/tv_boas_vindas_aumente_quantidade" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_boas_vindas_phygits" />
+
+    <Button
+        android:id="@+id/bt_boas_vindas_ok_entendi"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/background_botao"
+        android:text="@string/boas_vindas_botao_ok_entendi"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_boas_vindas_dica" />
+
+    <ImageView
+        android:id="@+id/iv_boas_vindas_logo_everis"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:contentDescription="@null"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/everislogo" />
+
 </android.support.constraint.ConstraintLayout>

@@ -140,8 +140,8 @@ public class BoasVindasActivity extends AppCompatActivity {
 
     private void inicializar() {
 
-        btInteragir = findViewById(R.id.bt_boas_vinda_interagir);
-        tvNome = findViewById(R.id.tv_boas_vindas_saudacao_usuario);
-        tvPhygits = findViewById(R.id.tv_boas_vindas_quantidade_phygits);
+        btInteragir = findViewById(R.id.bt_boas_vindas_ok_entendi);
+        tvNome = findViewById(R.id.tv_boas_vindas_nome_usuario);
+        tvPhygits = findViewById(R.id.tv_boas_vindas_valor_phygits);
     }
 }

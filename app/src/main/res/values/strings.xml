@@ -9,10 +9,11 @@
     <string name="cadastro_botao_cadastrar_texto">Cadastrar</string>
 
     --- BOAS VINDAS ---
-    <string name="boas_vindas_texto_saudacao">Olá, <b>%1$s</b>.</string>
-    <string name="boas_vindas_texto_quantidade_phygits">Você possui %1$d phygits.</string>
-    <string name="boas_vindas_texto_aumente_quantidade">Aumente a quantidade ao </string>
-    <string name="boas_vindas_texto_aumente_interaja_botao">interagir</string>
-    <string name="boas_vindas_texto_aumente_uso_oferta">ou use as ofertas do nosso Phygital Space ;)</string>
+    <string name="boas_vindas_texto_bem_vindo">Bem-vindo (a)</string>
+    <string name="boas_vindas_texto_nome_usuario">%1$s</string>
+    <string name="boas_vindas_texto_phygits_disponiveis">Phygits disponíveis:</string>
+    <string name="boas_vindas_texto_quantidade_phygits">%1$d</string>
+    <string name="boas_vindas_texto_dica">Aumente a quantidade ao interagir ou use as ofertas do nosso Phygital Space ;)</string>
+    <string name="boas_vindas_botao_ok_entendi">OK, entendi</string>
 
 </resources>
