@@ -5,6 +5,7 @@
     <string name="cadastro_edit_text_hint_nome">Nome</string>
     <string name="cadastro_edit_text_hint_empresa">Empresa</string>
     <string name="cadastro_edit_text_hint_email">E-mail</string>
+    <string name="cadastro_edit_text_hint_senha">Senha</string>
     <string name="cadastro_botao_tirar_foto_texto">Tirar Foto</string>
     <string name="cadastro_botao_cadastrar_texto">Cadastrar</string>
 
@@ -15,5 +16,8 @@
     <string name="boas_vindas_texto_quantidade_phygits">%1$d</string>
     <string name="boas_vindas_texto_dica">Aumente a quantidade ao interagir ou use as ofertas do nosso Phygital Space ;)</string>
     <string name="boas_vindas_botao_ok_entendi">OK, entendi</string>
+
+    --- INTERAGIR ---
+    <string name="interagir_botao_teste">Phygits Teste</string>
 
 </resources>

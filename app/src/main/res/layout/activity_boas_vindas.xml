@@ -76,7 +76,7 @@
 
         <TextView
             android:id="@+id/tv_boas_vindas_valor_phygits"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:maxLength="6"
@@ -85,9 +85,10 @@
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="@id/tv_boas_vindas_phygits_disponiveis"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/tv_boas_vindas_phygits_disponiveis"
             app:layout_constraintTop_toTopOf="@id/tv_boas_vindas_phygits_disponiveis"
-            tools:text="2500" />
+            tools:text="250" />
 
     </android.support.constraint.ConstraintLayout>
 

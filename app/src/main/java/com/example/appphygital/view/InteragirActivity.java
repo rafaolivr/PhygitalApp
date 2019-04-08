@@ -86,6 +86,6 @@ public class InteragirActivity extends AppCompatActivity {
     }
 
     private void inicializar() {
-        btnPhygitsTeste = findViewById(R.id.btnPhygitsTeste);
+        btnPhygitsTeste = findViewById(R.id.bt_interagir_phygits_teste);
     }
 }

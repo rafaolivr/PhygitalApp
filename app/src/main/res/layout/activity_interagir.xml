@@ -9,39 +9,40 @@
     tools:context=".view.InteragirActivity">
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/tv_interagir_ar_passos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="45dp"
-        android:text="Procure as figuras"
         android:textAlignment="center"
         android:textColor="@color/everis"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/iv_interagir_logo_everis"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Procure as figuras" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/iv_interagir_logo_everis"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="8dp"
+        android:contentDescription="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/everislogo" />
 
     <Button
-        android:id="@+id/btnPhygitsTeste"
+        android:id="@+id/bt_interagir_phygits_teste"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Phygits Teste"
-        app:layout_constraintBottom_toTopOf="@+id/textView15"
+        android:text="@string/interagir_botao_teste"
+        app:layout_constraintBottom_toTopOf="@+id/tv_interagir_ar_passos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
