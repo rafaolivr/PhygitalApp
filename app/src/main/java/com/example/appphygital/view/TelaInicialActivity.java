@@ -28,7 +28,6 @@ public class TelaInicialActivity extends AppCompatActivity {
 
     public static final String CADASTRO_QR_CODE = "cadastro";
     private FirebaseAuth autenticacao;
-    private FirebaseAuth mAuth;
     private Button btnAlanPedro;
     private VisitanteVO visitante;
     private CircleImageView civFotoPerfil;
@@ -37,8 +36,6 @@ public class TelaInicialActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_inicial);
-
-        mAuth = FirebaseAuth.getInstance();
 
         //Verifica visitante logado
         if (getIntent().getBooleanExtra("EXIT", false)) {
