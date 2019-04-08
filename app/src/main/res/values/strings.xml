@@ -17,4 +17,7 @@
     <string name="boas_vindas_texto_dica">Aumente a quantidade ao interagir ou use as ofertas do nosso Phygital Space ;)</string>
     <string name="boas_vindas_botao_ok_entendi">OK, entendi</string>
 
+    --- INTERAGIR ---
+    <string name="interagir_botao_teste">Phygits Teste</string>
+
 </resources>
