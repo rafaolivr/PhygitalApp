@@ -16,9 +16,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -29,6 +26,7 @@ public class TelaInicialActivity extends AppCompatActivity {
     private Button btnNovoVisitante;
     public static final String USUARIO = "usuario";
 
+    public static final String CADASTRO_QR_CODE = "cadastro";
     private FirebaseAuth autenticacao;
     private FirebaseAuth mAuth;
     private Button btnAlanPedro;
@@ -67,53 +65,28 @@ public class TelaInicialActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (visitante != null)
-                    cadastrarAnonimo(visitante);
+                    login(visitante.getEmail(), visitante.getSenha());
             }
         });
     }
 
-    private void cadastrarAnonimo(final VisitanteVO visitante) {
-
-        mAuth.signInAnonymously().
-                addOnCompleteListener(
-                        this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-
-                                if (task.isSuccessful()) {
-
-                                    try {
-
-                                        //Salvar dados no firebase
-                                        String idVisitante = task.getResult().getUser().getUid();
-                                        visitante.setId(idVisitante);
-                                        visitante.salvar();
-
-                                        startActivity(new Intent(getApplicationContext(), BoasVindasActivity.class));
-
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-
-                                } else {
-                                    String erroExecucao = "";
-                                    try {
-                                        throw task.getException();
-                                    } catch (FirebaseAuthWeakPasswordException e) {
-                                        erroExecucao = "Digite uma senha mais forte";
-                                    } catch (FirebaseAuthInvalidCredentialsException e) {
-                                        erroExecucao = "Por favor, digite um e-mail válido";
-                                    } catch (FirebaseAuthUserCollisionException e) {
-                                        erroExecucao = "Este conta já foi cadastra";
-                                    } catch (Exception e) {
-                                        erroExecucao = "Erro ao cadastrar usuário: " + e.getMessage();
-                                        e.printStackTrace();
-                                    }
-
-                                    Toast.makeText(TelaInicialActivity.this, "Erro: " + erroExecucao, Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+    public void login(String email, String senha) {
+        autenticacao.signInWithEmailAndPassword(email, senha)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast toast = Toast.makeText(getApplicationContext(), "sucesso", Toast.LENGTH_LONG);
+                            toast.show();
+                            Intent intent = new Intent(getApplicationContext(), BoasVindasActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast toast = Toast.makeText(getApplicationContext(), "email ou senha errados", Toast.LENGTH_LONG);
+                            toast.show();
+                        }
+                    }
+                });
     }
 
     private void botaoNovoVisitante() {
@@ -154,7 +127,9 @@ public class TelaInicialActivity extends AppCompatActivity {
                     visitante.setEmpresa(textoSepado[2]);
                     visitante.setPhygits(0);
 
-                    cadastrarAnonimo(visitante);
+                    Intent intent = new Intent(getApplicationContext(), CadastroActivity.class);
+                    intent.putExtra(CADASTRO_QR_CODE, visitante);
+                    startActivity(intent);
 
                 } catch (Exception e) {
                     Toast.makeText(this, "QRCode Inválido", Toast.LENGTH_LONG).show();

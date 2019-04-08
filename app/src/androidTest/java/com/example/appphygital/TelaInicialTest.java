@@ -47,6 +47,7 @@ public class TelaInicialTest {
         visitante.setNome("Ben Meyer");
         visitante.setPhygits(50);
         visitante.setSenha("123456");
+        visitante.setId("uDg0MVqDowd6ZQCe2yC8TJogYiz1");
 
         return visitante;
     }

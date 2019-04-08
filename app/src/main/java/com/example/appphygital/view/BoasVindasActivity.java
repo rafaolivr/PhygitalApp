@@ -55,16 +55,18 @@ public class BoasVindasActivity extends AppCompatActivity {
     }
 
     private void recuperarDados() {
+        DatabaseReference mDatabase;
 
-        FirebaseUser firebaseUser = firebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser firebaseUser = autenticacao.getInstance().getCurrentUser();
         String uId = firebaseUser.getUid();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        mDatabase.child("visitantes").child(uId).child("nome").addValueEventListener(new ValueEventListener() {
+        mDatabase.child("visitantes").child(uId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String nome = dataSnapshot.getValue(String.class);
-                tvNome.setText(nome);
+                visitanteLogado = dataSnapshot.getValue(VisitanteVO.class);
+                tvNome.setText(visitanteLogado.getNome());
+                tvPhygits.setText(String.valueOf(visitanteLogado.getPhygits()));
             }
 
             @Override
@@ -72,19 +74,6 @@ public class BoasVindasActivity extends AppCompatActivity {
             }
         });
 
-        mDatabase.child("visitantes").child(uId).child("phygits").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String valor = dataSnapshot.getValue(String.class);
-                tvPhygits.setText(valor);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
     }
 
     private void botaoInteragir() {
