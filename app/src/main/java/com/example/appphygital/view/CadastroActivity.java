@@ -3,6 +3,7 @@ package com.example.appphygital.view;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -342,6 +343,8 @@ public class CadastroActivity extends AppCompatActivity {
         btnCadastrar = findViewById(R.id.bt_cadastro_cadastrar);
         btnTirarFoto = findViewById(R.id.bt_cadastro_tirar_foto);
         pbCadastrar = findViewById(R.id.pb_cadastro_salvar_alteracoes);
+        pbCadastrar.getIndeterminateDrawable().setColorFilter(getResources()
+                .getColor(R.color.everis), PorterDuff.Mode.SRC_IN);
 
         etCadastroNome.requestFocus();
         if (visitante != null) {
