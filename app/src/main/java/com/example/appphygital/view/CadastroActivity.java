@@ -7,6 +7,7 @@ import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,7 +17,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -32,6 +32,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -54,18 +55,17 @@ public class CadastroActivity extends AppCompatActivity {
     private VisitanteVO visitante;
 
     private FirebaseAuth autenticacao;
-    private FirebaseAuth mAuth;
     private StorageReference reference;
     private FirebaseStorage storage;
 
     //CAMERA
     public static final int REQUEST_IMAGE_CAPTURE = 1;
     private Button btnTirarFoto;
-    private ImageView iv_foto;
     private String mCurrentPhotoPath;
     private Uri fotoURI;
     private String nomeFoto = "";
     private byte[] dadosImagem = null;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +74,6 @@ public class CadastroActivity extends AppCompatActivity {
 
         storage = FirebaseStorage.getInstance();
         reference = storage.getReference();
-        mAuth = FirebaseAuth.getInstance();
 
         obterExtras();
 
@@ -83,7 +82,6 @@ public class CadastroActivity extends AppCompatActivity {
 
         //Click do botão
         botaoCadastrar();
-
     }
 
     private void obterExtras() {
@@ -91,7 +89,6 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     private void botaoCadastrar() {
-
         //Cadastro do usuário
         pbCadastrar.setVisibility(View.GONE);
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
@@ -121,6 +118,25 @@ public class CadastroActivity extends AppCompatActivity {
                                 salvarFirebase();
 
                                 cadastrar(visitante);
+                                try {
+                                    Handler handler = new Handler();
+
+// tarefa postergada por 5000 milissegundos
+                                    handler.postDelayed(new Runnable() {
+                                        public void run() {
+                                            autenticacao = FirebaseAuth.getInstance();
+                                            user = autenticacao.getCurrentUser();
+
+                                            visitante.setId(Objects.requireNonNull(user.getUid()));
+                                            visitante.salvar();
+                                            startActivity(new Intent(getApplicationContext(), BoasVindasActivity.class));
+                                            finish();
+                                        }
+                                    }, 5000);
+
+                                } catch (Exception c) {
+                                    Toast.makeText(CadastroActivity.this, c.getMessage(), Toast.LENGTH_LONG).show();
+                                }
 
                             } else {
                                 Toast.makeText(CadastroActivity.this, "É necessário tirar foto para se cadastrar", Toast.LENGTH_SHORT).show();
@@ -162,8 +178,6 @@ public class CadastroActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                             pbCadastrar.setVisibility(View.GONE);
-                            Toast.makeText(CadastroActivity.this, "Cadastrado com sucesso", Toast.LENGTH_SHORT).show();
-
 
                         } else {
 
@@ -188,12 +202,8 @@ public class CadastroActivity extends AppCompatActivity {
                     }
                 }
         );
-        if (autenticacao.getCurrentUser() != null) {
-            this.visitante.setId(Objects.requireNonNull(autenticacao.getCurrentUser()).getUid());
-            this.visitante.salvar();
-            startActivity(new Intent(getApplicationContext(), BoasVindasActivity.class));
-            finish();
-        }
+        user = autenticacao.getCurrentUser();
+
     }
 
 //    private void cadastrarAnonimo(final VisitanteVO visitante) {
@@ -252,8 +262,7 @@ public class CadastroActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-
-            Toast.makeText(this, "Foto registrada com sucesso!", Toast.LENGTH_SHORT).show();
+            btnCadastrar.setEnabled(true);
         }
     }
 
@@ -278,7 +287,6 @@ public class CadastroActivity extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                Toast.makeText(CadastroActivity.this, "Imagem Salva", Toast.LENGTH_SHORT).show();
                 apagarFoto(mCurrentPhotoPath);
             }
         });
@@ -346,6 +354,7 @@ public class CadastroActivity extends AppCompatActivity {
         pbCadastrar.getIndeterminateDrawable().setColorFilter(getResources()
                 .getColor(R.color.everis), PorterDuff.Mode.SRC_IN);
 
+        btnCadastrar.setEnabled(false);
         etCadastroNome.requestFocus();
         if (visitante != null) {
             etCadastroNome.setText(visitante.getNome());

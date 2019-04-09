@@ -49,15 +49,15 @@ public class InteragirActivity extends AppCompatActivity {
     private void getValue() {
 
         FirebaseUser firebaseUser = firebaseAuth.getInstance().getCurrentUser();
-        String uId = firebaseUser.getUid();
+        final String uId = firebaseUser.getUid();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        mDatabase.child("visitantes").child(uId).child("phygits").addValueEventListener(new ValueEventListener() {
+        mDatabase.child("visitantes").child(uId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                phygits = Integer.valueOf(dataSnapshot.getValue(String.class));
-                phygitsAtualizado = phygits;
-
+                visitanteLogado = dataSnapshot.getValue(VisitanteVO.class);
+                visitanteLogado.setId(uId);
+                phygitsAtualizado = visitanteLogado.getPhygits();
             }
 
             @Override
@@ -76,7 +76,8 @@ public class InteragirActivity extends AppCompatActivity {
                 VisitanteFirebase.atualizarPhygitsUsuario(String.valueOf(phygitsAtualizado));
 
                 visitanteLogado.setPhygits(phygitsAtualizado);
-                visitanteLogado.atualizar();
+
+                visitanteLogado.salvar();
                 finish();
 
             }

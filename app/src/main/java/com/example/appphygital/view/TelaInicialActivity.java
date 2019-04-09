@@ -28,8 +28,7 @@ public class TelaInicialActivity extends AppCompatActivity {
 
     public static final String CADASTRO_QR_CODE = "cadastro";
     private FirebaseAuth autenticacao;
-    private FirebaseAuth mAuth;
-    private Button btnAlanPedro;
+    private Button btnLogin;
     private VisitanteVO visitante;
     private CircleImageView civFotoPerfil;
 
@@ -37,8 +36,6 @@ public class TelaInicialActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_inicial);
-
-        mAuth = FirebaseAuth.getInstance();
 
         //Verifica visitante logado
         if (getIntent().getBooleanExtra("EXIT", false)) {
@@ -61,7 +58,7 @@ public class TelaInicialActivity extends AppCompatActivity {
     }
 
     private void botaoAlanPedro() {
-        btnAlanPedro.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (visitante != null)
@@ -158,10 +155,10 @@ public class TelaInicialActivity extends AppCompatActivity {
 
     private void inicializar() {
         btnNovoVisitante = findViewById(R.id.bt_tela_inicial_novo_usuario);
-        btnAlanPedro = findViewById(R.id.bt_tela_inicial_entrar);
+        btnLogin = findViewById(R.id.bt_tela_inicial_entrar);
         civFotoPerfil = findViewById(R.id.civ_tela_inicial_avatar_usuario);
         if (visitante != null) {
-            btnAlanPedro.setText(visitante.getNome());
+            btnLogin.setText(visitante.getNome());
             civFotoPerfil.setVisibility(View.VISIBLE);
         }
     }
