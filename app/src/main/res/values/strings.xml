@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">AppPhygital</string>
 
+    --- TELA INICIAL ---
+    <string name="tela_inicial_botao_entrar">Entrar</string>
+    <string name="tela_inicial_botao_novo_usuario">Novo Usuário</string>
+
     --- CADASTRO ---
     <string name="cadastro_edit_text_hint_nome">Nome</string>
     <string name="cadastro_edit_text_hint_empresa">Empresa</string>

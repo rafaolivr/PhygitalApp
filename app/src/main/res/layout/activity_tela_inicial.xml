@@ -7,9 +7,11 @@
     tools:context=".view.TelaInicialActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/iv_tela_inicial_logo_everis"
         android:layout_width="250dp"
         android:layout_height="200dp"
+        android:contentDescription="@null"
+        android:importantForAccessibility="no"
         android:layout_marginBottom="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="24dp"
@@ -20,7 +22,7 @@
         app:srcCompat="@drawable/everislogo" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageUsuario"
+        android:id="@+id/civ_tela_inicial_avatar_usuario"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginEnd="8dp"
@@ -28,27 +30,27 @@
         android:layout_marginTop="24dp"
         android:src="@drawable/avatar"
         android:visibility="gone"
-        app:layout_constraintEnd_toStartOf="@id/btnAlanPedro"
+        app:layout_constraintEnd_toStartOf="@id/bt_tela_inicial_entrar"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_tela_inicial_logo_everis" />
 
     <Button
-        android:id="@+id/btnAlanPedro"
+        android:id="@+id/bt_tela_inicial_entrar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/background_botao"
-        android:text="Entrar"
+        android:text="@string/tela_inicial_botao_entrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toEndOf="@+id/imageUsuario"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintStart_toEndOf="@+id/civ_tela_inicial_avatar_usuario"
+        app:layout_constraintTop_toBottomOf="@+id/iv_tela_inicial_logo_everis" />
 
     <Button
-        android:id="@+id/btnNovoVisitante"
+        android:id="@+id/bt_tela_inicial_novo_usuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
@@ -56,10 +58,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/background_botao"
-        android:text="Novo Usuario"
+        android:text="@string/tela_inicial_botao_novo_usuario"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAlanPedro"
+        app:layout_constraintTop_toBottomOf="@+id/bt_tela_inicial_entrar"
         app:layout_constraintVertical_bias="0" />
 
 </android.support.constraint.ConstraintLayout>

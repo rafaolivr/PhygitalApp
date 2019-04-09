@@ -157,9 +157,9 @@ public class TelaInicialActivity extends AppCompatActivity {
     }
 
     private void inicializar() {
-        btnNovoVisitante = findViewById(R.id.btnNovoVisitante);
-        btnAlanPedro = findViewById(R.id.btnAlanPedro);
-        civFotoPerfil = findViewById(R.id.imageUsuario);
+        btnNovoVisitante = findViewById(R.id.bt_tela_inicial_novo_usuario);
+        btnAlanPedro = findViewById(R.id.bt_tela_inicial_entrar);
+        civFotoPerfil = findViewById(R.id.civ_tela_inicial_avatar_usuario);
         if (visitante != null) {
             btnAlanPedro.setText(visitante.getNome());
             civFotoPerfil.setVisibility(View.VISIBLE);
